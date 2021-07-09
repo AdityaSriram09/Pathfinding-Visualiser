@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="./styles/style.css">
+	<title>Grid</title>
+</head>
+	<body>
+		<div class="navbar">
+			<ul class="nav-btn">
+				<li class='start-state' data-state="start" onclick="changeState(this)">Start</li>
+				<li class='wall-state' data-state="wall" onclick="changeState(this)">Wall</li>
+				<li class='end-state' data-state="end" onclick="changeState(this)">End</li>
+				<li class='visualize'>Visualize</li>
+				<li class='Algorithm'>
+					<div class="dropdown">
+						<button class="dropbtn">Algorithm</button>
+						<ul class="dropdown-content">
+							<li class="BFS"  data-algo="bfs" onclick="algorithm(this)">BFS</li>
+							<li class="DFS"  data-algo="dfs" onclick="algorithm(this)">DFS</li>
+							<li  class="Dijsktra" data-algo="dijsktra" onclick="algorithm(this)">Dijsktra</li>
+							<li class="AStar"  data-algo="AStar" onclick="algorithm(this)">A Star</li>
+							<li class="JPS"  data-algo="JPS" onclick="algorithm(this)">JPS</li>
+						</ul>
+					</div>
+				</li>
+				<li class='clear' onclick="clearAll()">Clear</li>
+			</ul>
+		</div>
+		<div id="Grid" class="Grid">
+		</div>
+		<script src="./components/dataStructures.js"></script>
+		<script>
+			
+			//variables
+			var wall = false;
+			var start_x =0;
+			var start_y =0;
+			var end_x = 49;
+			var end_y = 19;
+			var state = "";
+			var path = new Stack();
+			var start = "<div class='start'></div>";
+			var end = "<div class='end'></div>";
+			var algo = 'none';
+			var exploring = false;
+			var grid = "";
+			var x = 50, y=20;
+			var Grid = document.querySelector('#Grid');
+			const vis = document.querySelector(".visualize");
+
+
+			for(let i=0;i<y;i++){
+				grid += "<div class='row'>" ;
+				for(let j=0;j<x;j++){
+					grid += "<div class='box' data-x='" + j + "' data-y='" + i + "' data-state='none'>"  + "</div>";
+				}
+				grid += "</div>";
+			}
+
+			document.getElementById("Grid").innerHTML = grid;
+
+		</script>
+		<script src="./components/state.js"></script>
+		<script src="./algorithms/bfs.js"></script>
+		<script src="./algorithms/dfs.js"></script>
+		<script src="./algorithms/AStar.js"></script>
+		<script src="./algorithms/jps.js"></script>
+		<script src="./algorithms/dijsktra.js"></script>
+		<script src="./components/visualize.js"></script>
+	</body>
+</html>
